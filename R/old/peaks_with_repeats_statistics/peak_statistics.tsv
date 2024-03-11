@@ -1,0 +1,7 @@
+Sample	Peak_Group	Peak_Count	No_R	Min_1R	No_4cR	Min_4cR	Repeat_Count	Ratio_Repeat_Count	Simple_Repeat	Simple_Repeat_Min_4cR
+Terra	All	 30276	 27558	 2718	 30011	 265	 8903	 100	 193	 113
+Terra	Overlapping	 810	 546	 264	 636	 174	 4029	 45.2544	 79	 75
+Terra	Non-Overlapping	 29466	 27012	 2454	 29375	 91	 4874	 54.7456	 114	 38
+R-loop	All	 29167	 25498	 3669	 28994	 173	 7352	 100	 167	 161
+R-loop	Overlapping	 860	 624	 236	 687	 173	 3443	 46.8308	 166	 161
+R-loop	Non-Overlapping	 28307	 24874	 3433	 28307	 0	 3909	 53.1692	 1	 0
