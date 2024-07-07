@@ -80,10 +80,11 @@ combined_all %>% filter(Sample == "TERRA" & Peak_Group != "All") %>%
 
 dev.off()
 
+
 #  geom_dotplot(binaxis = 'y', stackdir = "center", binwidth = 2, stackratio = 0.1)
 
 
-### Extra calculating median.
+#### Extra calculating median.
 combined_all %>% filter(Sample == "TERRA" & Peak_Group == "Intersecting") %>% pull(V2) %>% median()# [1] 11
 
 combined_all %>% filter(Sample == "TERRA" & Peak_Group == "Non-Intersecting") %>% pull(V2) %>% median()# [1] 1

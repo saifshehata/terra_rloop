@@ -74,7 +74,9 @@ combined_all %>% filter(Max_Tandem_Repeats >= 4) %>%  # filter to remove peaks w
 dev.off()
 
 
-### Extra calculating median.
+
+
+#### Extra calculating median.
 combined_all %>% filter(Sample == "TERRA" & Peak_Group == "Intersecting") %>% pull(Max_Tandem_Repeats) %>% median()# [1] 8
 
 combined_all %>% filter(Sample == "TERRA" & Peak_Group == "Non-Intersecting") %>% pull(Max_Tandem_Repeats) %>% median()# [1] 1
