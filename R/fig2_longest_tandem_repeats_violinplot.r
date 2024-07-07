@@ -68,7 +68,8 @@ combined_all %>% filter(Max_Tandem_Repeats >= 4) %>%  # filter to remove peaks w
         text = element_text(size = 22) ) +           
   scale_fill_manual(values=cbPalette) +             # colour by cbPalette
   scale_y_continuous(limits = c(0,90), breaks=seq(0,90, by=20)) +
-  scale_x_discrete(labels=c("Non-Intersecting" = terra_no_intersect_4r, "Intersecting" = terra_intersect_4r))
+  scale_x_discrete(labels=c("Non-Intersecting" = terra_no_intersect_4r, "Intersecting" = terra_intersect_4r)) +
+  stat_compare_means(label = "p.format", method = "t.test")
 
 dev.off()
 

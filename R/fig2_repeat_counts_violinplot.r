@@ -73,7 +73,10 @@ combined_all %>% filter(Sample == "TERRA" & Peak_Group != "All") %>%
         text = element_text(size = 22)) + 
   scale_fill_manual(values=cbPalette) + 
   scale_y_continuous(limits = c(0,120), breaks=seq(0,120, by=20)) +
-  scale_x_discrete(labels=c("Non-Intersecting" = terra_no_intersect_1r, "Intersecting" = terra_intersect_1r))
+  scale_x_discrete(labels=c("Non-Intersecting" = terra_no_intersect_1r, "Intersecting" = terra_intersect_1r)) +
+  stat_compare_means(label = "p.format", method = "t.test")
+  # stat_compare_means(label = "p.signif", method = "t.test")
+
 
 dev.off()
 
