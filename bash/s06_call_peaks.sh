@@ -49,8 +49,8 @@ macs2 callpeak -t $RLOOP_T -f BAM -g mm -B -n rloop
 # # call peaks for TERRA vs Sense (paired-end) mapped reads. -g: effective genome size or organism (mm for mus musculus). -s: read length. -B/--bdg: store the fragment pileup, control lambda, -log10pvalue and -log10qvalue scores in bedGraph files. -n: The prefix string for output files. -q: q-value (minimum FDR) cutoff, default 0.05.
 # cat $basenames | sort -n | egrep '(TERRA_ChIRT|Sense_ChIRT)' | cut -d_ -f1 | parallel --dryrun --max-args 2 "macs2 callpeak -t $mapped_reads/{1}_pe_sort_rmdup.bam -c $mapped_reads/{2}_pe_sort_rmdup.bam -f BAMPE -g mm -B -n {1}_terraVSsense"
 
-# # call peaks for TERRA vs Sense (paired-end) mapped reads
-# cat $basenames | sort -n | egrep '(TERRA_ChIRT|input_ChIRT)' | cut -d_ -f1 | parallel --dryrun --max-args 2 "macs2 callpeak -t $mapped_reads/{1}_pe_sort_rmdup.bam -c $mapped_reads/{2}_pe_sort_rmdup.bam -f BAMPE -g mm -B -n {1}_terraVSnput"
+# # call peaks for TERRA vs input (paired-end) mapped reads
+# cat $basenames | sort -n | egrep '(TERRA_ChIRT|input_ChIRT)' | cut -d_ -f1 | parallel --dryrun --max-args 2 "macs2 callpeak -t $mapped_reads/{1}_pe_sort_rmdup.bam -c $mapped_reads/{2}_pe_sort_rmdup.bam -f BAMPE -g mm -B -n {1}_terraVSinput"
 
 # # call peaks for ATRX (single-end) mapped reads
 # cat $basenames | sort -n | egrep '(ATRX_Mouse_ES_ChIPseq|ATRX_Mouse_ES_Input)' | cut -d_ -f1 | parallel --dryrun --max-args 2 "macs2 callpeak -t $mapped_reads/{1}_se_sort_rmdup.bam -c $mapped_reads/{2}_se_sort_rmdup.bam -f BAM -g mm -B -n {1}_atrxVSinput"
