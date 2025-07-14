@@ -1,4 +1,4 @@
-# terra_rloop
+# Terra-R-loop project
 
 Run scripts in the bash directory one by one numerically in the order they are named in.
 Then run the scripts in the R directory also one by one to generate the figures.
