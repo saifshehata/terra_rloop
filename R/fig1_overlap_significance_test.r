@@ -21,6 +21,8 @@ library('regioneR')
 
 #################################################################################################
 # check installed genomes
+# BiocManager::install("BSgenome")
+library(BSgenome)
 installed.genomes()
 # install mouse mm10 genome BioStrings file if not already installed, otherwise it will not work!
 # BiocManager::install("BSgenome.Mmusculus.UCSC.mm10", update=FALSE)
@@ -29,7 +31,7 @@ BiocManager::install("BSgenome.Mmusculus.UCSC.mm10.masked", update = FALSE)
 library(BSgenome.Mmusculus.UCSC.mm10)
 
 # run permutation test to check if overlap is by chance (for 100 permutations, p-value = 0.0099).Running with 1000 permutations may take ~30-60min.
-pt <- overlapPermTest(A=terra_all, B=rloop_all, ntimes=1000, genome="mm10" , alternative = "auto")
+pt <- overlapPermTest(A=terra_all, B=rloop_all, ntimes=1000, genome="mm10" , alternative = "auto", allow.overlaps=TRUE, per.chromosome=TRUE)
 
 # display the output of the test as text.
 pt
