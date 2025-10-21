@@ -53,12 +53,20 @@ wget --timestamping http://mitra.stanford.edu/kundaje/akundaje/release/blacklist
 gunzip --stdout mm10.blacklist.bed.gz > mm10.blacklist.bed
 
 
-# add telomeric regions to blacklisted regions to avoid their very high terra signal obscuring/skewing results from other nont-telomeric peaks. I defined telomeric regions as the last 500kb of each chromosome and the first 3.5M bases at the start of each chromosome, just to avoid any peaks near the chromosome ends. The first 3M bases at the start of each chromosomes are all N's. Chromosome Y has different values added for start and end due to its short length and checking start and end manually on IGV. I removed 150kb from the start, and 1050kb from the end of chrY
+# add subtelomeric regions to blacklisted regions to avoid their very high terra signal skewing results from other non-telomeric peaks.
+# I defined subtelomeric regions as the last 500kb of each chromosome (referenced in text) to avoid any peaks near the chromosome ends and focus on non-tlomeric loci.
+# The first 3M bases at the start of each chromosomes are all N's, so 3.5M bases (3M + 500kb) at the start of each chromosome were removed.
+# Chromosome Y has different values added for start and end due to its short length and checking start and end manually on IGV. I removed 150kb from the start, and 1050kb from the end of chrY.
 cat $profile/mm10.blacklist.bed > $profile/mm10.blacklist_telomeres.bed
 egrep -v '(random|chrM|chrUn|chrY)' $genome/mm10.chrom.sizes | awk 'OFS="\t"{print $1,$2-500000,$2}'| sort -V >> $profile/mm10.blacklist_telomeres.bed
 echo -e chrY\\t90694698\\t91680079 >> $profile/mm10.blacklist_telomeres.bed
 egrep -v '(random|chrM|chrUn|chrY)' $genome/mm10.chrom.sizes | awk 'OFS="\t"{print $1,1,3500000}'| sort -V >> $profile/mm10.blacklist_telomeres.bed
 echo -e chrY\\t1\\t150000 >> $profile/mm10.blacklist_telomeres.bed
+
+# Just for clarity, there were very few overlaps with blacklisted regions (only 13 overlaps between shared TERRA peaks lacking 4 tandem repeats, and no overlaps at all in shared TERRA peaks with 4 tandem repeats).
+# There were 20 and 24 peaks in shared TERRA peaks with and without 4 tandem repeats, respectively, that overlaped with subtelomeric regions.
+# The main takeaways from the figures did not change with or without removal of blacklist/subtelomere regions, but the signal coming from non-telomeric peaks was clearer when they were removed.
+# Removal was achieved by adding the mm10.blacklist_telomeres.bed file to the computeMatrix command below using the '--blackListFileName' parameter.
 
 
 ####################### TERRA ######################################
