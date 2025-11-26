@@ -138,8 +138,9 @@ End"  --whatToShow "plot and heatmap" --heatmapHeight 15
 
 ####################### R-loop ######################################
 # rloop read coverage on intersecting peak regions with or without 4 tandem repeats, split into intergenic and intronic peaks
+# Use the sorted TERRA regions bed file as input to --regionsFileName in order to have the R-loop heatmap peaks sorted in the same order as in the TERRA heatmap
 computeMatrix scale-regions --scoreFileName $RLOOP_BW \
---regionsFileName $RLOOP_INTERSECT_4tR_INTERGENIC $RLOOP_INTERSECT_4tR_INTRON $RLOOP_INTERSECT_no4tR_INTERGENIC $RLOOP_INTERSECT_no4tR_INTRON \
+--regionsFileName terra_reads_on_rloop_intersecting_peaks_4tR_no4tR_intergenic_intron.bed \
 --samplesLabel "R-loop" \
 --upstream 3000 --regionBodyLength 3000 --downstream 3000 --binSize 10 \
 --outFileName rloop_reads_on_rloop_intersecting_peaks_4tR_no4tR_intergenic_intron.matrix.gz \
@@ -154,6 +155,7 @@ plotProfile --matrixFile rloop_reads_on_rloop_intersecting_peaks_4tR_no4tR_inter
 plotHeatmap --matrixFile $profile/rloop_reads_on_rloop_intersecting_peaks_4tR_no4tR_intergenic_intron.matrix.gz \
 --outFileSortedRegions rloop_reads_on_rloop_intersecting_peaks_4tR_no4tR_intergenic_intron.bed \
 --outFileName $figures/rloop_reads_on_rloop_intersecting_peaks_4tR_no4tR_intergenic_intron_heatmap.pdf \
+--sortRegions no \
 --startLabel "Peak
 Start" --endLabel "Peak
 End"  --whatToShow "plot and heatmap" --heatmapHeight 15
@@ -161,8 +163,9 @@ End"  --whatToShow "plot and heatmap" --heatmapHeight 15
 
 ####################### ATRX ######################################
 # atrx read coverage on intersecting peak regions with or without 4 tandem repeats, split into intergenic and intronic peaks
+# Use the sorted TERRA regions bed file as input to --regionsFileName in order to have the ATRX heatmap peaks sorted in the same order as in the TERRA heatmap
 computeMatrix scale-regions --scoreFileName $ATRX_BW \
---regionsFileName $RLOOP_INTERSECT_4tR_INTERGENIC $RLOOP_INTERSECT_4tR_INTRON $RLOOP_INTERSECT_no4tR_INTERGENIC $RLOOP_INTERSECT_no4tR_INTRON \
+--regionsFileName terra_reads_on_rloop_intersecting_peaks_4tR_no4tR_intergenic_intron.bed \
 --samplesLabel "ATRX" \
 --upstream 3000 --regionBodyLength 3000 --downstream 3000 --binSize 10 \
 --outFileName atrx_reads_on_rloop_intersecting_peaks_4tR_no4tR_intergenic_intron.matrix.gz \
@@ -177,6 +180,7 @@ plotProfile --matrixFile atrx_reads_on_rloop_intersecting_peaks_4tR_no4tR_interg
 plotHeatmap --matrixFile $profile/atrx_reads_on_rloop_intersecting_peaks_4tR_no4tR_intergenic_intron.matrix.gz \
 --outFileSortedRegions atrx_reads_on_rloop_intersecting_peaks_4tR_no4tR_intergenic_intron.bed \
 --outFileName $figures/atrx_reads_on_rloop_intersecting_peaks_4tR_no4tR_intergenic_intron_heatmap.pdf \
+--sortRegions no \
 --startLabel "Peak
 Start" --endLabel "Peak
 End"  --whatToShow "plot and heatmap" --heatmapHeight 15
